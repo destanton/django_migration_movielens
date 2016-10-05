@@ -18,11 +18,18 @@ def add_item_rater_data(apps, schema_editor):
     with open('item.csv') as infile:
         contents = csv.reader(infile, delimiter="|")
         for row in contents:
-            print(row)
             Item.objects.create(id=row[0], movie_title=row[1], release_date=row[2], video_release_date=row[3], imdb_url=row[4],
-                                unknown=row[5], action=row[6], adventure=row[7], animation=row[8], children=row[9], com)
+                                unknown=row[5], action=row[6], adventure=row[7], animation=row[8], children=row[9], comedy=row[10],
+                                crime=row[11], documentary=row[12], drama=row[13], fantasy=row[14], film_noir=row[15], horror=row[16],
+                                musical=row[17], mystery=row[18], romance=row[19], sci_fi=row[20], thriller=row[21], war=row[22],
+                                western=row[23])
 
-    raise Exception("BIG TOES!")
+    with open('data.csv') as infile:
+        contents = csv.reader(infile, delimiter="\t")
+        for row in contents:
+            rater_id = Rater.objects.get(id=row[0])
+            item_id = Item.objects.get(id=row[0])
+            Data.objects.create(rater_id=rater_id, item_id=item_id, rating=row[2], time_stamp=row[3])
 
 
 class Migration(migrations.Migration):

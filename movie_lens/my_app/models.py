@@ -27,7 +27,7 @@ class Item(models.Model):
     horror = models.BooleanField()
     musical = models.BooleanField()
     mystery = models.BooleanField()
-    romanace = models.BooleanField()
+    romance = models.BooleanField()
     sci_fi = models.BooleanField()
     thriller = models.BooleanField()
     war = models.BooleanField()
